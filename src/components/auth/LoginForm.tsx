@@ -51,18 +51,28 @@ export function LoginForm({ modoInicial, codigo }: { modoInicial: Modo; codigo?:
     setAviso(null);
   };
 
-  async function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     setAviso(null);
+    // Se lee lo que hay en los campos: si el navegador autocompletó antes de que
+    // React cargara, el estado puede estar vacío aunque el campo se vea lleno.
+    const campo = (id: string) => (e.currentTarget.querySelector<HTMLInputElement>(`#${id}`)?.value ?? "");
+    const correo = (campo("l-email") || email).trim();
+    const clave = campo("l-pass") || pass;
+    const nombreFinal = (campo("l-nombre") || nombre).trim();
+    if (!correo) return setError("Escribe tu correo.");
+    if (!clave) return setError("Escribe tu contraseña.");
+    setEmail(correo);
+    setPass(clave);
     setEnviando(true);
     const auth = getFirebaseAuth();
     try {
       if (modo === "crear") {
-        const cred = await createUserWithEmailAndPassword(auth, email.trim(), pass);
-        if (nombre.trim()) await updateProfile(cred.user, { displayName: nombre.trim() });
+        const cred = await createUserWithEmailAndPassword(auth, correo, clave);
+        if (nombreFinal) await updateProfile(cred.user, { displayName: nombreFinal });
       } else {
-        await signInWithEmailAndPassword(auth, email.trim(), pass);
+        await signInWithEmailAndPassword(auth, correo, clave);
       }
     } catch (err) {
       setError(mensajeAuth(err));
