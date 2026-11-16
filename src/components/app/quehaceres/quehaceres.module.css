@@ -1,0 +1,883 @@
+/* Quehaceres — mobile first. Cuadrícula semanal desde 1024px. */
+
+/* ---------- Encabezado ---------- */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.h1 {
+  font-size: 28px;
+  line-height: 1.29;
+}
+
+.sub,
+.texto {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.headAcciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.semana {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+}
+
+.semanaBtn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.semanaBtn:hover {
+  background: var(--bg);
+}
+
+.semanaTexto {
+  min-width: 112px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.cargando {
+  min-height: 200px;
+  align-items: center;
+  justify-content: center;
+  color: var(--steel-azure);
+}
+
+.vacio {
+  align-items: flex-start;
+}
+
+.vacio .texto {
+  max-width: 60ch;
+}
+
+.vacioBtn {
+  align-self: stretch;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: var(--radius-control);
+  background: var(--brand-tint);
+  color: var(--steel-azure);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Estados (badge y chip) ---------- */
+.badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-badge);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge[data-estado="hecho"],
+.chip[data-estado="hecho"] {
+  background: var(--success-tint);
+  color: var(--success-text);
+}
+
+.badge[data-estado="pendiente"],
+.chip[data-estado="pendiente"] {
+  background: var(--gray-tint);
+  color: var(--gray-text);
+}
+
+.badge[data-estado="no_hecho"],
+.chip[data-estado="no_hecho"] {
+  background: var(--danger-tint);
+  color: var(--danger-text);
+}
+
+.puntos {
+  flex: none;
+  padding: 3px 8px;
+  border-radius: var(--radius-badge);
+  background: var(--yellow-tint);
+  color: var(--yellow-text);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Calendario ---------- */
+.calendario {
+  gap: 16px;
+}
+
+.calTop {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Filtro por integrante: control segmentado que se desplaza en móvil */
+.filtro {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border-radius: var(--radius-control);
+  background: var(--bg);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filtro::-webkit-scrollbar {
+  display: none;
+}
+
+.filtroBtn {
+  flex: none;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filtroBtn[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-micro);
+}
+
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Cuadrícula semanal (solo escritorio) */
+.tablaWrap,
+.soloEscritorio {
+  display: none;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 6px;
+  table-layout: fixed;
+  margin: -6px;
+  width: calc(100% + 12px);
+}
+
+.thPersona {
+  width: 148px;
+}
+
+.thDia {
+  padding: 8px 4px;
+  border-radius: var(--radius-control);
+  font-weight: 400;
+  text-align: center;
+}
+
+.thDia[data-hoy] {
+  background: var(--brand-tint);
+  color: var(--steel-azure);
+}
+
+.thAbrev {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.thDia[data-hoy] .thAbrev {
+  color: var(--steel-azure);
+}
+
+.thNum {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.persona {
+  text-align: left;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.persona > span:last-child {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.persona {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.celda {
+  vertical-align: top;
+  height: 72px;
+  padding: 6px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-control);
+  background: #fafbfd;
+}
+
+.celda[data-hoy] {
+  border-color: #c9d9ee;
+}
+
+.chip {
+  width: 100%;
+  min-height: 28px;
+  margin-bottom: 4px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: var(--radius-badge);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip svg {
+  flex: none;
+}
+
+.chip:hover {
+  filter: brightness(0.96);
+}
+
+/* Móvil: tira de días */
+.movil {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tira {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.dia {
+  min-height: 64px;
+  padding: 6px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  font-family: var(--font);
+  cursor: pointer;
+}
+
+.dia[data-hoy] {
+  border-color: var(--steel-azure);
+}
+
+.dia[aria-pressed="true"] {
+  background: var(--steel-azure);
+  border-color: var(--steel-azure);
+  color: #ffffff;
+}
+
+.diaLetra {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.dia[aria-pressed="true"] .diaLetra,
+.dia[aria-pressed="true"] .diaPuntos {
+  color: #d4e0f0;
+}
+
+.diaNum {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.diaPuntos {
+  min-height: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--success-text);
+}
+
+.diaTitulo {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.diaTitulo::first-letter {
+  text-transform: uppercase;
+}
+
+.nada {
+  padding: 14px 16px;
+  border-radius: var(--radius-control);
+  border: 1px dashed var(--border);
+  background: var(--bg);
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* ---------- Filas de tareas (hoy / día) ---------- */
+.filas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fila {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.fila:first-child {
+  border-top: 0;
+}
+
+.casillaBtn {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  margin-left: -8px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+span.casillaBtn {
+  cursor: default;
+}
+
+button.casillaBtn:hover .casilla[data-estado="pendiente"] {
+  border-color: var(--success);
+}
+
+button.casillaBtn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.casilla {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.casilla[data-estado="pendiente"] {
+  border: 2px solid var(--check-off);
+}
+
+.casilla[data-estado="hecho"] {
+  background: var(--success);
+}
+
+.casilla[data-estado="no_hecho"] {
+  background: var(--danger);
+}
+
+.filaTexto {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.filaTarea {
+  font-weight: 600;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.fila[data-estado="hecho"] .filaTarea {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.filaQuien {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.filaQuien > span {
+  font-size: 10px !important;
+}
+
+.mas {
+  background: transparent;
+  color: var(--text-muted);
+  margin-right: -8px;
+}
+
+.mas:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Cumplimiento ---------- */
+.cumplimiento {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cumpleFila {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cumpleCuerpo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cumpleTexto {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.cumpleNombre {
+  font-weight: 600;
+}
+
+.cumpleCifra {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.pista {
+  height: 8px;
+  border-radius: var(--rounded-pill);
+  background: var(--border-soft);
+  overflow: hidden;
+}
+
+.pista > div {
+  height: 100%;
+  border-radius: var(--rounded-pill);
+  transition: width 0.3s ease;
+}
+
+/* ---------- Formularios ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputCorto {
+  max-width: 140px;
+}
+
+.diasToggle {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.diaToggle {
+  min-height: 44px;
+  padding: 4px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.diaToggle small {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.diaToggle[aria-pressed="true"] {
+  background: var(--steel-azure);
+  border-color: var(--steel-azure);
+  color: #ffffff;
+}
+
+.diaToggle[aria-pressed="true"] small {
+  color: #d4e0f0;
+}
+
+.diaToggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.quienes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quien {
+  min-height: 44px;
+  padding: 0 14px 0 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.quien:not([aria-pressed="true"]) > span {
+  opacity: 0.45;
+}
+
+.quien[aria-pressed="true"] {
+  border-color: var(--steel-azure);
+  background: var(--brand-tint);
+  color: var(--steel-azure);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding-top: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.check input {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  flex: none;
+  accent-color: var(--steel-azure);
+}
+
+/* ---------- Lista de tareas (admin) ---------- */
+.tareas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tarea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.tarea:first-child {
+  border-top: 0;
+}
+
+.tarea[data-activa="false"] .tareaNombre {
+  color: var(--text-muted);
+}
+
+.tareaTexto {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tareaNombre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.tareaMeta {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.tareaAvatares {
+  display: none;
+  gap: 4px;
+}
+
+/* ---------- Detalle ---------- */
+.detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detalleQuien {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detalleBotones {
+  display: grid;
+  gap: 10px;
+}
+
+.detalleReasignar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* =========================================================
+   Tablet ≥ 768px
+   ========================================================= */
+@media (min-width: 768px) {
+  .head {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .headAcciones {
+    justify-content: flex-end;
+  }
+
+  .calTop {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .leyenda {
+    flex: none;
+  }
+
+  .tareaAvatares {
+    display: flex;
+  }
+
+  .vacioBtn {
+    align-self: flex-start;
+  }
+}
+
+/* =========================================================
+   Escritorio ≥ 1024px: cuadrícula semanal
+   ========================================================= */
+@media (min-width: 1024px) {
+  .tablaWrap {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .soloEscritorio {
+    display: block;
+  }
+
+  .movil {
+    display: none;
+  }
+
+  .grid2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* "Hoy" repite la lista del día en móvil: solo se muestra en escritorio. */
+.hoy {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .hoy {
+    display: flex !important;
+  }
+}
+
+/* ---------- Asignaciones fijas (se repiten cada semana) ---------- */
+.repite {
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+.repiteTexto {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--steel-azure);
+}
+
+.tareaFijas {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--steel-azure);
+}
+
+.tareaFijas svg {
+  flex: none;
+}
+
+.notaFija {
+  padding: 10px 12px;
+  border-radius: var(--radius-control);
+  background: var(--brand-tint);
+  color: var(--french-blue);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.fijas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+}
+
+.fija {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 6px 6px 12px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--steel-azure);
+}
+
+.fija:first-child {
+  border-top: 0;
+}
+
+.fijaTexto {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.fijaQuitar {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 14px;
+}

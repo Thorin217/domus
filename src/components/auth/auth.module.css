@@ -1,0 +1,224 @@
+/* Login / Bienvenida — mobile first. */
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+/* ---------- Panel de marca: imperial-blue liso, sin decoración ---------- */
+.brand {
+  background: var(--imperial-blue);
+  color: #ffffff;
+  padding: 16px var(--gutter) 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brandLogo {
+  align-self: flex-start;
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  border-radius: var(--rounded-sm);
+}
+
+.brandLogo:focus-visible {
+  outline-color: #ffffff;
+}
+
+.brandCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 480px;
+}
+
+.brandTitle {
+  color: #ffffff;
+  font-size: clamp(26px, 7vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.brandText {
+  color: #d4e0f0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.brandLista,
+.brandPie {
+  display: none;
+}
+
+.brandLista {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brandLista li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.brandCheck {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--imperial-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandPie {
+  font-size: 13px;
+  color: #d4e0f0;
+}
+
+/* ---------- Formulario ---------- */
+.formWrap {
+  flex: 1;
+  padding: 28px var(--gutter) calc(32px + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formHead {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formTitle {
+  font-size: 28px;
+  line-height: 1.29;
+}
+
+.formText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.linkBtn {
+  border: 0;
+  background: none;
+  padding: 0;
+  min-height: 32px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--steel-azure);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.foot {
+  text-align: center;
+  font-size: 15px;
+  color: var(--body);
+}
+
+.foot button {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.passWrap {
+  position: relative;
+}
+
+.passWrap input {
+  padding-right: 64px;
+}
+
+.verPass {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--rounded-md);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Opciones de bienvenida */
+.opciones {
+  display: grid;
+  gap: 12px;
+}
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 900px) {
+  .page {
+    flex-direction: row;
+  }
+
+  .brand {
+    flex: 1 1 520px;
+    min-height: 100dvh;
+    padding: 48px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+  }
+
+  .brandCopy {
+    gap: 16px;
+  }
+
+  .brandText {
+    font-size: 18px;
+  }
+
+  .brandLista,
+  .brandPie {
+    display: flex;
+  }
+
+  .formWrap {
+    flex: 1 1 520px;
+    align-items: center;
+    padding: 48px 32px;
+  }
+
+  .form {
+    gap: 20px;
+  }
+}

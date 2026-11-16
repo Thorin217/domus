@@ -1,0 +1,39 @@
+rules_version = '2';
+
+// Domus: el cliente solo LEE. Todas las escrituras pasan por /api (Admin SDK),
+// que valida sesión, rol y reglas del dominio.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Pertenencia inmediata: si te quitan del hogar, pierdes acceso al instante.
+    function esIntegrante(hogarId) {
+      return signedIn()
+        && exists(/databases/$(database)/documents/hogares/$(hogarId)/integrantes/$(request.auth.uid));
+    }
+
+    // Perfil propio (a qué hogar pertenezco).
+    match /usuarios/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /hogares/{hogarId} {
+      allow read: if esIntegrante(hogarId);
+      allow write: if false;
+
+      match /{sub=**} {
+        allow read: if esIntegrante(hogarId);
+        allow write: if false;
+      }
+    }
+
+    // Índice código → hogar: solo el servidor lo usa.
+    match /codigos/{codigo} {
+      allow read, write: if false;
+    }
+  }
+}

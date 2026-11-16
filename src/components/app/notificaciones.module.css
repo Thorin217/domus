@@ -1,0 +1,158 @@
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.texto {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.texto b {
+  color: var(--text);
+}
+
+.nota {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-badge);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge[data-tono="ok"] {
+  background: var(--success-tint);
+  color: var(--success-text);
+}
+
+.pasos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius-control);
+  background: var(--brand-tint);
+}
+
+.pasos ol {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.acciones > button {
+  flex: 1 1 auto;
+}
+
+.prefs {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.legend {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+.pref {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-soft);
+  cursor: pointer;
+}
+
+.pref:last-child {
+  border-bottom: 0;
+}
+
+.prefTexto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 15px;
+}
+
+.prefTexto span {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* Interruptor accesible sobre un checkbox real */
+.switch {
+  appearance: none;
+  flex: none;
+  width: 48px;
+  height: 28px;
+  margin: 0;
+  border-radius: var(--rounded-pill);
+  background: var(--check-off);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-micro);
+  transition: transform 0.15s;
+}
+
+.switch:checked {
+  background: var(--steel-azure);
+}
+
+.switch:checked::after {
+  transform: translateX(20px);
+}
+
+.switch:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch,
+  .switch::after {
+    transition: none;
+  }
+}

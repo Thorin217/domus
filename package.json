@@ -1,0 +1,31 @@
+{
+  "name": "domus",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "rules:deploy": "node scripts/deploy-rules.mjs",
+    "firebase:check": "node scripts/check-firebase.mjs"
+  },
+  "dependencies": {
+    "firebase": "^13.3.0",
+    "firebase-admin": "^14.5.1",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/web-push": "^3.6.4",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "typescript": "^5"
+  }
+}

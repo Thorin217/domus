@@ -1,0 +1,210 @@
+/* Armazón de la app — mobile first. Fondo #F5F6FA, barras y sidebar blancas.
+   Móvil: barra superior + cajón. Escritorio (≥960): menú lateral fijo. */
+
+.shell {
+  min-height: 100dvh;
+  background: var(--surface-soft);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 64px;
+  padding: 0 var(--gutter);
+  padding-top: env(safe-area-inset-top);
+  box-sizing: content-box;
+  background: var(--canvas);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topLogo,
+.sideLogo {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  border-radius: var(--rounded-sm);
+}
+
+.menuBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: var(--rounded-md);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0;
+  cursor: pointer;
+}
+
+.drawer {
+  position: fixed;
+  z-index: 39;
+  inset: calc(65px + env(safe-area-inset-top)) 0 0 0;
+  background: var(--canvas);
+  padding: 12px var(--gutter) calc(20px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.drawer[hidden] {
+  display: none;
+}
+
+.sidebar {
+  display: none;
+}
+
+/* ---------- Navegación ---------- */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navItem {
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+a.navItem:hover {
+  background: var(--bg);
+}
+
+.navItem[data-activo="true"] {
+  background: var(--brand-tint);
+  color: var(--steel-azure);
+  font-weight: 600;
+}
+
+.navItem[aria-disabled="true"] {
+  color: var(--muted);
+  cursor: default;
+}
+
+.navIcon {
+  flex: none;
+}
+
+.pronto {
+  margin-left: auto;
+  padding: 3px 8px;
+  border-radius: var(--radius-badge);
+  background: var(--gray-tint);
+  color: var(--gray-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- Tarjeta del hogar ---------- */
+.hogarCard {
+  margin-top: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hogarNombre {
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.hogarMeta {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.salir {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 12px 0 8px;
+  margin-left: -8px;
+  border: 0;
+  border-radius: var(--rounded-md);
+  background: transparent;
+  color: var(--steel-azure);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.salir:hover {
+  background: var(--brand-tint);
+}
+
+/* ---------- Contenido ---------- */
+.main {
+  min-width: 0;
+  padding: 24px var(--gutter) calc(40px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+}
+
+@media (min-width: 960px) {
+  .shell {
+    display: grid;
+    grid-template-columns: 264px minmax(0, 1fr);
+  }
+
+  .topbar,
+  .drawer {
+    display: none !important;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow-y: auto;
+    background: var(--canvas);
+    border-right: 1px solid var(--hairline);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .sideLogo {
+    padding-left: 10px;
+    align-self: flex-start;
+  }
+
+  .navItem {
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  .main {
+    padding: 40px;
+    gap: 24px;
+  }
+}

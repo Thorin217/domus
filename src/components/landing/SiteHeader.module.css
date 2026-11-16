@@ -1,0 +1,112 @@
+/* Barra superior blanca con borde inferior, fija arriba. */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--container);
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  border-radius: var(--rounded-sm);
+}
+
+.logo {
+  width: 116px;
+  height: auto;
+}
+
+/* En móvil: logo + "Iniciar sesión" (el hero ya trae "Crear mi hogar") */
+.nav,
+.acciones .soloEscritorio {
+  display: none;
+}
+
+.nav {
+  align-items: center;
+  gap: 28px;
+}
+
+.navLink {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--steel-azure);
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btnOutline {
+  background: var(--surface);
+  color: var(--french-blue);
+  border-color: var(--french-blue);
+}
+
+.btnOutline:hover {
+  background: var(--brand-tint);
+}
+
+.btnPrimary {
+  background: var(--steel-azure);
+  color: #ffffff;
+}
+
+.btnPrimary:hover {
+  background: var(--french-blue);
+}
+
+@media (min-width: 768px) {
+  .logo {
+    width: 132px;
+  }
+
+  .acciones .soloEscritorio {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+  }
+}

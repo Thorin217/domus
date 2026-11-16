@@ -1,0 +1,243 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.h1 {
+  font-size: 28px;
+  line-height: 1.29;
+}
+
+.sub {
+  font-size: 16px;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.texto {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.grid {
+  display: grid;
+  /* minmax(0, …) evita que textos sin salto (correos) ensanchen la columna en móvil */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* ---------- Código ---------- */
+.codigoCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.codigoHead {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.codigoTexto {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.codigo {
+  font-weight: 700;
+  font-size: clamp(36px, 12vw, 48px);
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-align: center;
+  color: var(--imperial-blue);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 18px 8px 18px calc(8px + 0.14em);
+  user-select: all;
+}
+
+.codigoBtns {
+  display: grid;
+  gap: 10px;
+}
+
+.linkBtn {
+  align-self: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--steel-azure);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- Integrantes ---------- */
+.lista {
+  gap: 8px;
+}
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.row:first-child {
+  border-top: 0;
+}
+
+.rowText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.rowName {
+  font-weight: 600;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.tu {
+  font-weight: 600;
+  color: var(--body);
+}
+
+.rowMail {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chipAdmin {
+  background: var(--yellow-tint);
+  color: var(--yellow-text);
+}
+
+.more {
+  background: transparent;
+  color: var(--ink);
+  margin-right: -8px;
+}
+
+.more:hover {
+  background: var(--bg);
+}
+
+.vacio {
+  margin-top: 4px;
+  padding: 14px 16px;
+  border-radius: var(--radius-control);
+  border: 1px dashed var(--border);
+  background: var(--bg);
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* ---------- Formularios ---------- */
+.form,
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.inline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.moneda {
+  position: relative;
+}
+
+.moneda span {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.moneda input {
+  padding-left: 36px;
+}
+
+.cuenta {
+  gap: 12px;
+}
+
+.cuenta .texto {
+  margin-bottom: 4px;
+}
+
+@media (min-width: 600px) {
+  .codigoCard {
+    padding: 32px;
+  }
+
+  .codigoBtns {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .inline {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .cuenta button {
+    align-self: flex-start;
+  }
+}
+
+/* Escritorio: dos columnas (código + ajustes / integrantes + cuenta) */
+@media (min-width: 1100px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .codigoBtns {
+    grid-template-columns: 1fr;
+  }
+}
