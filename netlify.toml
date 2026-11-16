@@ -5,6 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # No son secretos (zona horaria y dirección pública): que el escáner de secretos no los busque.
+  SECRETS_SCAN_OMIT_KEYS = "DOMUS_ZONA,VAPID_SUBJECT"
 
 [functions]
   directory = "netlify/functions"
